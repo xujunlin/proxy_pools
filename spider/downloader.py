@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# encoding: utf-8
 import requests
 import logging
 import chardet
@@ -9,8 +11,10 @@ sh = logging.StreamHandler()
 logger.addHandler(sh)
 logger.setLevel(logging.DEBUG)
 
-
 class Downloader(object):
+    """
+    从网站爬取代理列表
+    """
     def __init__(self):
             self.headers = {
                     'user-agent' :'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'

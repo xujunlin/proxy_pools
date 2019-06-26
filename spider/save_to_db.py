@@ -1,7 +1,8 @@
+#!/usr/bin/env python
+# encoding: utf-8
 import pymongo
 from pymongo import errors
 import random
-
 
 
 class Mongo_save(object):

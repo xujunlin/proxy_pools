@@ -1,5 +1,5 @@
 import flask
-from .db import Mongo_save
+from .save_to_db import Mongo_save
 import json
 
 app = flask.Flask(__name__)

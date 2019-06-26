@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# encoding: utf-8
 from .scheduling import scheduling, check
 from .api import api_run
 from multiprocessing import Process

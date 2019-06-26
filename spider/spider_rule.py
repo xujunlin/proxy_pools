@@ -1,4 +1,7 @@
-parse_rule = [
+#!/usr/bin/env python
+# encoding: utf-8
+class ProxyRule(object):
+    parse_rule = [
     {
         'name': 'xici',
         'url': ['https://www.xicidaili.com/nn/{}'.format(i) for i in range(1, 4)],

@@ -1,8 +1,10 @@
-from .config import parse_rule
+#!/usr/bin/env python
+# encoding: utf-8
+from .spider_rule import ProxyRule
 from .downloader import Downloader
-from .url_parser import Parser
-from .verify_ip import verify_many
-from .db import Mongo_save
+from .proxy_parser import Parser
+from .verify import VerifyIp
+from .save_to_db import Mongo_save
 import logging
 import time
 
@@ -15,12 +17,12 @@ logger.setLevel(logging.DEBUG)
 def scheduling():
     while True:
         logger.info('开始抓取IP...')
-        for rule in parse_rule:
+        for rule in ProxyRule.parse_rule:
             for url in rule['url']:
                 logger.info('开始抓取网站:{}'.format(url))
                 text = Downloader().download(url, rule)
                 proxy_list = Parser().xpath_parse(text, rule)
-                verify_many(proxy_list, 'upload')
+                VerifyIp().verify_many(proxy_list, method='upload')
         time.sleep(24 * 60 * 60)
 
 def check():
@@ -29,6 +31,6 @@ def check():
         proxies = m.get_proxy(10000)
         if not len(proxies) == 0:
             logger.info('开始检测代理IP...')
-            verify_many(proxies, 'update')
+            VerifyIp().verify_many(proxies, 'update')
 
         time.sleep(30 * 60)
